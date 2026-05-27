@@ -292,16 +292,17 @@
             </div>
 
             <!-- Stats Summary -->
-            <div class="flex items-center gap-3 w-full md:w-auto justify-end">
-                <div class="w-full md:w-auto bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-2 flex items-center justify-between md:justify-start space-x-3">
-                    <div class="text-right">
-                        <span class="block text-[10px] text-slate-500 font-bold uppercase">Total Siswa</span>
-                        <span class="text-lg font-extrabold font-mono text-white" x-text="students.length">0</span>
+            <div class="flex items-center w-full md:w-auto justify-start md:justify-end">
+                <div class="flex items-center gap-3 bg-slate-950/60 backdrop-blur border border-slate-800/80 rounded-2xl p-2 px-4 shadow-inner">
+                    <div class="flex items-center gap-2 pr-3 border-r border-slate-800/60">
+                        <div class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 animate-pulse"></div>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Siswa:</span>
+                        <span class="text-sm font-extrabold font-mono text-white" x-text="students.length">0</span>
                     </div>
-                    <div class="w-px h-8 bg-slate-800"></div>
-                    <div class="text-right">
-                        <span class="block text-[10px] text-slate-500 font-bold uppercase">Foto Cocok</span>
-                        <span class="text-lg font-extrabold font-mono text-brand-cyan"
+                    <div class="flex items-center gap-2 pl-1">
+                        <div class="w-2 h-2 rounded-full bg-brand-cyan flex-shrink-0 animate-pulse"></div>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Foto Cocok:</span>
+                        <span class="text-sm font-extrabold font-mono text-brand-cyan"
                             x-text="students.filter(s => s.matched).length">0</span>
                     </div>
                 </div>
@@ -425,9 +426,8 @@
                         <i data-lucide="x" class="w-3.5 h-3.5"></i>
                     </button>
                 </div>
-                <!-- Student Rows -->
                 <div
-                    class="overflow-y-auto flex-1 max-h-[300px] border border-slate-850 rounded-xl bg-slate-950/20 divide-y divide-slate-850">
+                    class="overflow-y-auto flex-1 max-h-[300px] border border-slate-800/80 rounded-xl bg-slate-950/20 divide-y divide-slate-800/50">
                     <template x-for="(student, idx) in filteredStudents()" :key="idx">
                         <button @click="selectStudent(idx)"
                             class="w-full text-left p-3 flex items-center justify-between transition-all duration-150 group"
@@ -504,16 +504,7 @@
                         </div>
                     </div>
 
-                    <!-- Latar Foto -->
-                    <div class="flex flex-col gap-1 p-2 bg-slate-950/50 rounded-xl border border-slate-800 hover:border-pink-500/40 transition-colors group">
-                        <span class="font-semibold text-slate-400 group-hover:text-slate-200 transition-colors leading-tight">Latar Foto</span>
-                        <div class="flex items-center gap-1.5 mt-0.5">
-                            <input type="color" x-model="theme.photoBoxColor"
-                                class="w-7 h-7 flex-shrink-0 rounded-lg cursor-pointer border border-slate-700" title="Warna Latar Foto">
-                            <input type="text" x-model="theme.photoBoxColor"
-                                class="w-full bg-transparent border-b border-slate-700 focus:border-pink-400 outline-none font-mono text-slate-300 uppercase text-[9px] pb-0.5">
-                        </div>
-                    </div>
+
 
                     <!-- Nama Siswa -->
                     <div class="flex flex-col gap-1 p-2 bg-slate-950/50 rounded-xl border border-slate-800 hover:border-pink-500/40 transition-colors group">
@@ -571,6 +562,38 @@
                     </div>
 
                 </div>
+
+                <!-- Divider -->
+                <div class="w-full h-px bg-slate-800/80 my-3"></div>
+
+                <!-- Sliders for Sizes -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10px]">
+                    <!-- Slider Ukuran Logo -->
+                    <div class="flex items-center justify-between p-2.5 bg-slate-950/50 rounded-xl border border-slate-800 hover:border-pink-500/40 transition-colors group">
+                        <div class="flex flex-col min-w-0 pr-2">
+                            <span class="font-semibold text-slate-400 group-hover:text-slate-200 transition-colors leading-tight">Ukuran Logo Sekolah</span>
+                            <span class="text-[9px] text-slate-500">Perbesar/perkecil logo</span>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <input type="range" min="0.4" max="2.0" step="0.05" x-model="theme.logoScale"
+                                class="w-24 h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-pink-500">
+                            <span x-text="Math.round((theme.logoScale || 1.0) * 100) + '%'" class="font-mono text-pink-400 w-8 text-right flex-shrink-0">100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Slider Ukuran Teks -->
+                    <div class="flex items-center justify-between p-2.5 bg-slate-950/50 rounded-xl border border-slate-800 hover:border-pink-500/40 transition-colors group">
+                        <div class="flex flex-col min-w-0 pr-2">
+                            <span class="font-semibold text-slate-400 group-hover:text-slate-200 transition-colors leading-tight">Ukuran Teks Header</span>
+                            <span class="text-[9px] text-slate-500">Nama & slogan sekolah</span>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <input type="range" min="0.4" max="2.0" step="0.05" x-model="theme.headerTextScale"
+                                class="w-24 h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-pink-500">
+                            <span x-text="Math.round((theme.headerTextScale || 1.0) * 100) + '%'" class="font-mono text-pink-400 w-8 text-right flex-shrink-0">100%</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- ===== END PANEL DESAIN & WARNA ===== -->
 
@@ -606,7 +629,7 @@
                 </div>
                 <!-- Render Container (Handles transform scaling cleanly without any negative margin clipping!) -->
                 <div id="preview-container"
-                    class="relative w-full overflow-hidden flex items-center justify-center py-6 sm:py-10 bg-slate-950/50 rounded-2xl border border-slate-850/80 shadow-inner min-h-[300px] sm:min-h-[500px]">
+                    class="relative w-full overflow-hidden flex items-center justify-center py-6 sm:py-10 bg-slate-950/50 rounded-2xl border border-slate-800/80 shadow-inner min-h-[300px] sm:min-h-[500px]">
 
                     <div
                         class="flex items-center justify-center p-4 bg-slate-900/10 rounded-2xl border border-slate-800/30">
@@ -652,21 +675,37 @@
                                             <div class="flex justify-between items-start h-[160px]">
                                                 <!-- School Logo and Name (Top Left, inside Solid White background) -->
                                                 <div class="flex items-center select-none relative group/header">
-                                                    <label class="relative group/logo cursor-pointer block -mr-6">
-                                                        <img :src="theme.logoUrl"
-                                                            class="h-[170px] w-[170px] flex-shrink-0 object-contain drop-shadow-sm overflow-hidden transition-opacity group-hover/logo:opacity-80"
-                                                            alt="" onload="this.style.opacity='1'"
-                                                            onerror="this.style.opacity='0'">
+                                                    <div class="relative group/logopos cursor-pointer outline-none"
+                                                        tabindex="0"
+                                                        :style="`transform: translate(${theme.logoOffsetX || 0}px, ${theme.logoOffsetY || 0}px); transform-origin: center;`"
+                                                        @keydown.alt.up.prevent="theme.logoOffsetY = (theme.logoOffsetY || 0) - 2"
+                                                        @keydown.alt.down.prevent="theme.logoOffsetY = (theme.logoOffsetY || 0) + 2"
+                                                        @keydown.alt.left.prevent="theme.logoOffsetX = (theme.logoOffsetX || 0) - 2"
+                                                        @keydown.alt.right.prevent="theme.logoOffsetX = (theme.logoOffsetX || 0) + 2">
+                                                        <label class="relative group/logo cursor-pointer block"
+                                                            :class="(theme.logoScale || 1.0) > 1.2 ? '-mr-2' : ((theme.logoScale || 1.0) < 0.8 ? '-mr-10' : '-mr-6')">
+                                                            <img :src="theme.logoUrl"
+                                                                class="flex-shrink-0 object-contain drop-shadow-sm overflow-hidden transition-opacity group-hover/logo:opacity-80"
+                                                                :style="`height: ${170 * (theme.logoScale || 1.0)}px; width: ${170 * (theme.logoScale || 1.0)}px;`"
+                                                                alt="" onload="this.style.opacity='1'"
+                                                                onerror="this.style.opacity='0'">
+                                                            <div
+                                                                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/logo:opacity-100 transition-opacity bg-slate-900/30 rounded-xl">
+                                                                <i data-lucide="image-plus"
+                                                                    class="w-6 h-6 text-white drop-shadow-md"></i>
+                                                            </div>
+                                                            <input type="file" accept="image/*" class="hidden"
+                                                                @change="handleLogoUpload">
+                                                        </label>
+                                                        <!-- Move hint overlay for Logo -->
                                                         <div
-                                                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/logo:opacity-100 transition-opacity bg-slate-900/30 rounded-xl">
-                                                            <i data-lucide="image-plus"
-                                                                class="w-6 h-6 text-white drop-shadow-md"></i>
+                                                            class="absolute -top-6 left-0 text-[10px] text-brand-cyan opacity-0 group-hover/logopos:opacity-100 whitespace-nowrap bg-slate-900/80 px-2 py-0.5 rounded-full pointer-events-none transition-opacity">
+                                                            <i data-lucide="move" class="w-3 h-3 inline mr-1"></i>Tahan
+                                                            <strong>ALT + Arah Panah</strong> untuk geser logo
                                                         </div>
-                                                        <input type="file" accept="image/*" class="hidden"
-                                                            @change="handleLogoUpload">
-                                                    </label>
+                                                    </div>
                                                     <div class="flex flex-col justify-center leading-none relative group/textpos"
-                                                        :style="`transform: translate(${theme.headerOffsetX}px, ${theme.headerOffsetY}px)`"
+                                                        :style="`transform: translate(${theme.headerOffsetX}px, ${theme.headerOffsetY}px) scale(${theme.headerTextScale || 1.0}); transform-origin: left center;`"
                                                         @keydown.alt.up.prevent="theme.headerOffsetY -= 2"
                                                         @keydown.alt.down.prevent="theme.headerOffsetY += 2"
                                                         @keydown.alt.left.prevent="theme.headerOffsetX -= 2"
@@ -731,24 +770,43 @@
                                                 </div>
                                                 <!-- Shifted right to perfectly clear the white cutout at the bottom left -->
                                                 <div
-                                                    class="absolute left-[300px] bottom-[60px] pointer-events-auto group/footer">
+                                                    class="absolute left-[300px] bottom-[60px] pointer-events-auto group/footer select-none outline-none cursor-pointer"
+                                                    tabindex="0"
+                                                    :style="`transform: translate(${theme.footerOffsetX || 0}px, ${theme.footerOffsetY || 0}px); transform-origin: left center;`"
+                                                    @keydown.alt.up.prevent="theme.footerOffsetY = (theme.footerOffsetY || 0) - 2"
+                                                    @keydown.alt.down.prevent="theme.footerOffsetY = (theme.footerOffsetY || 0) + 2"
+                                                    @keydown.alt.left.prevent="theme.footerOffsetX = (theme.footerOffsetX || 0) - 2"
+                                                    @keydown.alt.right.prevent="theme.footerOffsetX = (theme.footerOffsetX || 0) + 2">
                                                     <span
                                                         class="text-[26px] font-bold tracking-widest uppercase drop-shadow-md outline-none focus:bg-slate-900/60 rounded px-2 py-1"
                                                         :style="`color: ${theme.footerTextColor}`"
                                                         contenteditable="true">LULUS TAHUN AJARAN 2025/2026</span>
+                                                    <!-- Move hint overlay for Footer -->
+                                                    <div
+                                                        class="absolute -top-6 left-2 text-[10px] text-brand-cyan opacity-0 group-hover/footer:opacity-100 whitespace-nowrap bg-slate-900/80 px-2 py-0.5 rounded-full pointer-events-none transition-opacity">
+                                                        <i data-lucide="move" class="w-3 h-3 inline mr-1"></i>Tahan
+                                                        <strong>ALT + Arah Panah</strong> untuk geser footer
+                                                    </div>
                                                     <input type="color" x-model="theme.footerTextColor"
-                                                        class="absolute -right-8 top-1 opacity-0 group-hover/footer:opacity-100 w-6 h-6 cursor-pointer shadow border border-white rounded"
+                                                        class="absolute -right-8 top-1 opacity-0 group-hover/footer:opacity-100 w-6 h-6 cursor-pointer shadow border border-white rounded z-35"
                                                         title="Warna Teks Footer">
                                                 </div>
                                                 <!-- Right side Photo Container -->
                                                 <div
                                                     class="absolute right-[60px] top-[140px] w-[360px] h-[450px] pointer-events-auto">
 
+                                                    <!-- Layered Vector Shadow for html2canvas support in downloaded images (Symmetrical Glow on ALL sides) -->
+                                                    <div class="absolute bg-black/60 rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] pointer-events-none z-0" style="top: -3px; bottom: -3px; left: -3px; right: -3px;"></div>
+                                                    <div class="absolute bg-black/45 rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] pointer-events-none z-0" style="top: -6px; bottom: -6px; left: -6px; right: -6px;"></div>
+                                                    <div class="absolute bg-black/28 rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] pointer-events-none z-0" style="top: -12px; bottom: -12px; left: -12px; right: -12px;"></div>
+                                                    <div class="absolute bg-black/15 rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] pointer-events-none z-0" style="top: -20px; bottom: -20px; left: -20px; right: -20px;"></div>
+
                                                     <div
-                                                        class="relative w-full h-full flex items-center justify-center">
+                                                        class="relative w-full h-full flex items-center justify-center rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] z-10"
+                                                        style="box-shadow: 0px 24px 48px rgba(0, 0, 0, 0.9); background-color: #0c1524;">
 
                                                         <!-- Photo Container with Custom Corner Radius Mask -->
-                                                        <div class="w-full h-full rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] overflow-hidden border-none shadow-2xl relative z-10 flex items-center justify-center group/photo"
+                                                        <div class="w-full h-full rounded-tr-[160px] rounded-bl-[160px] rounded-tl-[12px] rounded-br-[12px] overflow-hidden border-none relative z-10 flex items-center justify-center group/photo"
                                                             :style="`background-color: ${theme.photoBoxColor}`">
 
                                                             <input type="color" x-model="theme.photoBoxColor"
@@ -764,7 +822,7 @@
                                                             <!-- If No Photo -->
                                                             <template x-if="!getSelectedStudent().photoUrl">
                                                                 <div
-                                                                    class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#0067A3] to-[#0A4D68] text-slate-200 p-8 text-center">
+                                                                    class="w-full h-full flex flex-col items-center justify-center text-slate-200 p-8 text-center">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                         viewBox="0 0 24 24" stroke-width="1.2"
                                                                         stroke="currentColor"
@@ -784,13 +842,15 @@
                                                         </div>
                                                         <!-- NISN Pill-Badge Container -->
                                                         <div
-                                                            class="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 z-20 w-[300px] group/badge">
-                                                            <div class="border-4 border-slate-300 py-3 px-8 rounded-full font-extrabold text-xl tracking-wider text-center shadow-xl flex items-center justify-center space-x-2"
-                                                                :style="`background-color: ${theme.badgeBgColor}; color: ${theme.badgeTextColor}`">
-                                                                <span class="font-black opacity-70">NISN.</span>
+                                                            class="absolute bottom-[24px] left-1/2 -translate-x-1/2 z-20 w-[300px] group/badge"
+                                                            style="transform: translateX(-50%);">
+                                                            <div class="border-4 border-slate-300 rounded-full shadow-xl"
+                                                                :style="`background-color: ${theme.badgeBgColor}; color: ${theme.badgeTextColor}; display: flex; align-items: center; justify-content: center; height: 56px; gap: 4px; padding-bottom: 9px;`">
+                                                                <span style="font-weight: 800; font-size: 22px; line-height: 1;">NISN.</span>
                                                                 <span contenteditable="true"
                                                                     @blur="updateStudentText($event, 'nisn')"
-                                                                    class="font-mono focus:ring-1 focus:ring-sky-500 rounded px-1 outline-none font-bold"
+                                                                    class="focus:ring-1 focus:ring-sky-500 rounded px-1 outline-none"
+                                                                    style="font-weight: 800; font-size: 22px; line-height: 1;"
                                                                     x-text="getSelectedStudent().nisn"></span>
                                                             </div>
                                                             <!-- Color pickers -->
@@ -806,6 +866,26 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!-- Copyright Label (Bottom Right, near bottom edge of the entire card banner) -->
+                                                <div class="absolute bottom-[36px] right-[58px] select-none outline-none cursor-pointer group/copyright text-right z-30"
+                                                    tabindex="0"
+                                                    :style="`color: ${theme.footerTextColor}; opacity: 0.65; transform: translate(${theme.copyrightOffsetX || 0}px, ${theme.copyrightOffsetY || 0}px); transform-origin: right center;`"
+                                                    @keydown.alt.up.prevent="theme.copyrightOffsetY = (theme.copyrightOffsetY || 0) - 2"
+                                                    @keydown.alt.down.prevent="theme.copyrightOffsetY = (theme.copyrightOffsetY || 0) + 2"
+                                                    @keydown.alt.left.prevent="theme.copyrightOffsetX = (theme.copyrightOffsetX || 0) - 2"
+                                                    @keydown.alt.right.prevent="theme.copyrightOffsetX = (theme.copyrightOffsetX || 0) + 2">
+                                                    <span class="text-[10px] font-semibold tracking-wider font-sans">
+                                                        &copy; 2026. Hak Cipta dilindungi. Dikembangkan secara profesional oleh WiraWebSolusi.
+                                                    </span>
+                                                    <!-- Move hint overlay for Copyright -->
+                                                    <div
+                                                        class="absolute -top-6 right-0 text-[10px] text-brand-cyan opacity-0 group-hover/copyright:opacity-100 whitespace-nowrap bg-slate-900/80 px-2 py-0.5 rounded-full pointer-events-none transition-opacity">
+                                                        <i data-lucide="move" class="w-3 h-3 inline mr-1"></i>Tahan
+                                                        <strong>ALT + Arah Panah</strong> untuk geser copyright
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </template>
@@ -960,6 +1040,14 @@
                     logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Tut_Wuri_Handayani.svg/1200px-Tut_Wuri_Handayani.svg.png',
                     headerOffsetX: 0,
                     headerOffsetY: 0,
+                    logoOffsetX: 0,
+                    logoOffsetY: 0,
+                    copyrightOffsetX: 0,
+                    copyrightOffsetY: 0,
+                    footerOffsetX: 0,
+                    footerOffsetY: 0,
+                    logoScale: 1.0,
+                    headerTextScale: 1.0,
                     schoolNameColor: '#0E4C6D',
                     schoolSloganColor: '#64748b',
                     primaryBgColor: '#0E4C6D',
@@ -1100,7 +1188,17 @@
                     this.theme.nameColor = '#ffffff';
                     this.theme.quoteColor = '#e2e8f0';
                     this.theme.footerTextColor = '#ffffff';
-                    this.setStatus('Warna tema berhasil di-reset ke bawaan.', 'success');
+                    this.theme.logoScale = 1.0;
+                    this.theme.headerTextScale = 1.0;
+                    this.theme.logoOffsetX = 0;
+                    this.theme.logoOffsetY = 0;
+                    this.theme.headerOffsetX = 0;
+                    this.theme.headerOffsetY = 0;
+                    this.theme.copyrightOffsetX = 0;
+                    this.theme.copyrightOffsetY = 0;
+                    this.theme.footerOffsetX = 0;
+                    this.theme.footerOffsetY = 0;
+                    this.setStatus('Warna & ukuran tema berhasil di-reset ke bawaan.', 'success');
                 },
                 clearStudents() {
                     this.showClearConfirm = true;
@@ -1316,6 +1414,26 @@
                             el.className = el.className.replace(/tracking-[a-z0-9-\[\]\.]+/g, '').trim();
                         });
 
+                        // Temporarily raise NISN text only on the downloaded image (by setting padding-bottom to 21px)
+                        const badgeInner = cardElement.querySelector('.group\\/badge > div');
+                        const originalPadding = badgeInner ? badgeInner.style.paddingBottom : '';
+                        if (badgeInner) {
+                            badgeInner.style.paddingBottom = '21px';
+                        }
+
+                        // Solve html2canvas object-fit: cover squish bug by temporarily swapping img with a background-image div
+                        const studentImg = cardElement.querySelector('.group\\/photo img');
+                        let tempDiv = null;
+                        if (studentImg) {
+                            tempDiv = document.createElement('div');
+                            tempDiv.className = 'w-full h-full';
+                            tempDiv.style.backgroundImage = `url("${studentImg.src}")`;
+                            tempDiv.style.backgroundSize = 'cover';
+                            tempDiv.style.backgroundPosition = 'center';
+                            tempDiv.style.backgroundRepeat = 'no-repeat';
+                            studentImg.parentNode.replaceChild(tempDiv, studentImg);
+                        }
+
                         // Force repaint
                         await new Promise(resolve => setTimeout(resolve, 50));
 
@@ -1326,10 +1444,16 @@
                             logging: false
                         });
 
-                        // Restore classes
+                        // Restore classes and styles
                         trackingElements.forEach((el, i) => {
                             el.className = originalClasses[i];
                         });
+                        if (badgeInner) {
+                            badgeInner.style.paddingBottom = originalPadding;
+                        }
+                        if (tempDiv && studentImg) {
+                            tempDiv.parentNode.replaceChild(studentImg, tempDiv);
+                        }
 
                         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
 
@@ -1383,6 +1507,26 @@
                             trackingElements.forEach(el => {
                                 el.className = el.className.replace(/tracking-[a-z0-9-\[\]\.]+/g, '').trim();
                             });
+
+                            // Temporarily raise NISN text only on the downloaded image (by setting padding-bottom to 21px)
+                            const badgeInner = cardElement.querySelector('.group\\/badge > div');
+                            const originalPadding = badgeInner ? badgeInner.style.paddingBottom : '';
+                            if (badgeInner) {
+                                badgeInner.style.paddingBottom = '21px';
+                            }
+                            
+                            // Solve html2canvas object-fit: cover squish bug by temporarily swapping img with a background-image div
+                            const studentImg = cardElement.querySelector('.group\\/photo img');
+                            let tempDiv = null;
+                            if (studentImg) {
+                                tempDiv = document.createElement('div');
+                                tempDiv.className = 'w-full h-full';
+                                tempDiv.style.backgroundImage = `url("${studentImg.src}")`;
+                                tempDiv.style.backgroundSize = 'cover';
+                                tempDiv.style.backgroundPosition = 'center';
+                                tempDiv.style.backgroundRepeat = 'no-repeat';
+                                studentImg.parentNode.replaceChild(tempDiv, studentImg);
+                            }
                             
                             await new Promise(resolve => setTimeout(resolve, 50));
 
@@ -1393,9 +1537,16 @@
                                 logging: false
                             });
 
+                            // Restore classes and styles
                             trackingElements.forEach((el, i) => {
                                 el.className = originalClasses[i];
                             });
+                            if (badgeInner) {
+                                badgeInner.style.paddingBottom = originalPadding;
+                            }
+                            if (tempDiv && studentImg) {
+                                tempDiv.parentNode.replaceChild(studentImg, tempDiv);
+                            }
 
                             const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
                             if (blob) {
