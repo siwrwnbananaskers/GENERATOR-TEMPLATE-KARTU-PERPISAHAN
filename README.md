@@ -1,6 +1,6 @@
-# 🎓 Layanan Generator Otomatis Kartu Perpisahan Siswa (Optimasi Layar LED Besar) oleh WiraWebSolusi
+# 🎓 GENERATOR KARTU PERPISAHAN (Optimasi Layar LED & Cetak Premium) oleh WiraWebSolusi
 
-Aplikasi berbasis web modern, premium, dan super responsif yang dikembangkan oleh **WiraWebSolusi** (Wira Web Solusi) untuk memproduksi Kartu Perpisahan Sekolah secara massal maupun satuan dengan cepat, indah, dan dioptimalkan khusus untuk tampilan layar proyektor / layar LED besar.
+Aplikasi berbasis web modern, premium, dan super responsif yang dikembangkan oleh **WiraWebSolusi** (Wira Web Solusi) untuk memproduksi Kartu Perpisahan Sekolah secara massal maupun satuan dengan cepat, indah, dan dioptimalkan khusus untuk tampilan layar proyektor / layar LED besar, serta cetak fisik beresolusi tinggi.
 
 Aplikasi ini dibangun murni menggunakan teknologi **Client-Side (Sisi Klien)**, artinya **tidak ada data, foto, nama, atau NISN siswa yang diunggah ke internet/server luar**. Seluruh proses pengolahan data, pengunggahan foto, hingga pembuatan gambar kartu dilakukan langsung di memori komputer Anda sendiri.
 
@@ -9,19 +9,27 @@ Aplikasi ini dibangun murni menggunakan teknologi **Client-Side (Sisi Klien)**, 
 ## ✨ Fitur Utama
 
 - **100% Aman & Privasi Terjaga (Offline Ready)**: Seluruh pemrosesan bersifat lokal. Tidak memerlukan backend, server, ataupun database online. Aman dari kebocoran data pribadi siswa.
-- **Impor Massal via Excel (SheetJS)**: Impor ratusan data siswa sekaligus menggunakan file Excel (.xlsx). Sistem otomatis mendeteksi kolom NISN, Nama, dan Cita-Cita.
+- **Impor Massal via Excel (SheetJS)**: Impor ratusan data siswa sekaligus menggunakan file Excel (`.xlsx`). Sistem otomatis mendeteksi kolom NISN, Nama, dan Cita-Cita.
 - **Pencocokan Foto Massal Cerdas**: Cukup unggah semua foto siswa sekaligus dari folder lokal komputer Anda. Sistem akan secara otomatis memetakan foto dengan data siswa berdasarkan nama file foto yang sesuai dengan **NISN** siswa (Contoh: `12345678.jpg`).
 - **Kustomisasi Desain Real-Time**:
   - Ubah warna latar belakang (Primary Color).
   - Ubah warna teks nama, kutipan (quote), dan slogan sekolah.
   - Ubah warna emblem (badge) NISN.
   - Unggah logo sekolah kustom langsung di tempat.
-  - Teks header, nama sekolah, slogan, dan teks kelulusan dapat langsung diedit di layar (*contenteditable*).
-- **Kontrol Posisi Presisi (Keyboard Shortcuts)**: Geser posisi teks nama sekolah dan slogan secara presisi piksel demi piksel menggunakan tombol keyboard.
-- **Ekspor Berkualitas Tinggi & Stabil**:
+  - Teks nama sekolah, slogan, dan teks kelulusan dapat langsung diedit di layar (*contenteditable*).
+- **Kontrol Posisi Presisi & Drag-and-Drop (Keyboard Shortcuts)**: 
+  - Geser posisi teks nama sekolah dan slogan secara presisi piksel demi piksel menggunakan tombol keyboard.
+  - Geser posisi label hak cipta dan teks kelulusan secara dinamis sesuai kebutuhan layout visual Anda.
+- **Ekspor Berkualitas Tinggi & Stabil (High-Fidelity Rendering)**:
+  - **Efek Bayangan Sempurna (Symmetrical Layered Vector Shadow)**: Mengatasi keterbatasan mesin `html2canvas` dengan menerapkan 4 lapis bayangan vektor simetris di sekeliling foto siswa untuk hasil unduhan yang tebal, presisi, dan premium di semua sisi.
+  - **Anti-Distorsi Rasio Foto (No-Squish Engine)**: Mengintegrasikan sistem penukar DOM otomatis berbasis CSS `background-size: cover` saat pemotretan berlangsung. Menghindari bug `html2canvas` yang membuat foto siswa terlihat **gepeng** akibat ketidakcocokan aspect ratio asli.
   - Ekspor satuan ke format **PNG beresolusi tinggi** (skala 2x, setara 2560x1440 piksel) siap cetak.
   - Ekspor massal otomatis ke dalam format **ZIP** untuk semua siswa yang fotonya telah berhasil dicocokkan.
-- **Penyimpanan Cache Pintar (LocalStorage)**: Seluruh pengaturan warna, logo kustom sekolah, dan data siswa tersimpan secara otomatis di browser Anda. Pengaturan tidak akan hilang bahkan jika halaman dimuat ulang (refresh) atau browser ditutup.
+- **Antarmuka Premium & Responsif (Freeze Header & Flex-Layout)**:
+  - **Sticky Fixed Header**: Header navigasi tetap beku (*frozen*) di atas layar dengan efek `backdrop-blur-lg` saat menggulir (*scrolling*) ratusan daftar siswa.
+  - **Optimasi Seluler Modern**: Restrukturisasi grid layout, pemendekan nama brand menjadi all-caps `GENERATOR KARTU PERPISAHAN`, dan penataan ulang Section 3 (Pilih & Edit Siswa) agar tampil rapi tanpa *overflow* di ponsel.
+  - **Footer Premium**: Penataan ulang footer dengan mikro-animasi hover interaktif, indikator privasi aktif berbasis pulsasi, serta integrasi ikon tautan global persis di samping nama pengembang.
+- **Penyimpanan Cache Pintar (LocalStorage)**: Seluruh pengaturan warna, logo kustom sekolah, pergeseran letak teks, dan data siswa tersimpan secara otomatis di browser Anda. Pengaturan tidak akan hilang bahkan jika halaman dimuat ulang (refresh) atau browser ditutup.
 
 ---
 
@@ -46,9 +54,9 @@ Agar sistem dapat memasangkan foto secara massal, beri nama file foto siswa sesu
 *   Contoh: `12345001.jpg` atau `12345002.png`
 
 ### 4. Tombol Shortcut Keyboard
-Untuk menyesuaikan letak teks nama sekolah secara super presisi:
-1.  Klik pada area teks nama sekolah ("SDN TEGALSARI").
-2.  Tahan tombol **`ALT`** pada keyboard Anda, lalu tekan tombol **`Arah Panah` (Atas / Bawah / Kiri / Kanan)** untuk menggeser posisi teks secara presisi.
+Untuk menyesuaikan letak elemen secara super presisi:
+1.  Klik pada area teks nama sekolah ("SDN TEGALSARI"), Teks Kelulusan, atau Label Hak Cipta.
+2.  Tahan tombol **`ALT`** pada keyboard Anda, lalu tekan tombol **`Arah Panah` (Atas / Bawah / Kiri / Kanan)** untuk menggeser posisi elemen secara presisi.
 
 ---
 
